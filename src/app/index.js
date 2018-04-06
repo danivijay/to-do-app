@@ -1,14 +1,20 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var createReactClass = require('create-react-class');
+let React = require('react')
+let ReactDOM = require('react-dom')
+let createReactClass = require('create-react-class');
 
-var TodoComponent = createReactClass({
+let TodoComponent = createReactClass({
   getInitialState: function() {
     return {
-      todos: ['washup', 'take a nap']
+      todos: ['washup', 'take a nap'],
+      age: 30
     }
   },
   render: function() {
+    let ager = setTimeout(function(){
+      this.setState({
+        age: 35
+      });
+    }.bind(this), 5000);
     return(
       <div>
         <p> 
@@ -16,6 +22,7 @@ var TodoComponent = createReactClass({
           {this.state.todos[0]}<br/>
           {this.state.todos[0]}<br/>
         </p>
+        <h3>{this.state.age}</h3>
       </div>
     );
   }
