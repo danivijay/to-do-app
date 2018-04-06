@@ -6,11 +6,18 @@ class TodoComponent extends React.Component{
   render(){
     return(
       <div>
-        <h1>Hello</h1>
-        <p>World</p>
+        <p> 
+          Cheese {this.props.cheese.name}
+        </p>
       </div>
     );
   }
 };
 
-ReactDOM.render(<TodoComponent />, document.getElementById('todo-wrapper'));
+let myCheese = {
+  name: 'Camemberi',
+  smellFactor: 'Extreme pong',
+  price: '3.50'
+}
+
+ReactDOM.render(<TodoComponent msg="I like cheese" cheese={myCheese} />, document.getElementById('todo-wrapper'));
