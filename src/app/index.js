@@ -2,17 +2,24 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var createReactClass = require('create-react-class');
 
-class TodoComponent extends React.Component{
-  render(){
+var TodoComponent = createReactClass({
+  getInitialState: function() {
+    return {
+      todos: ['washup', 'take a nap']
+    }
+  },
+  render: function() {
     return(
       <div>
         <p> 
-          Cheese {this.props.cheese.name}
+          {this.state.todos[0]}<br/>
+          {this.state.todos[0]}<br/>
+          {this.state.todos[0]}<br/>
         </p>
       </div>
     );
   }
-};
+});
 
 let myCheese = {
   name: 'Camemberi',
@@ -20,4 +27,4 @@ let myCheese = {
   price: '3.50'
 }
 
-ReactDOM.render(<TodoComponent msg="I like cheese" cheese={myCheese} />, document.getElementById('todo-wrapper'));
+ReactDOM.render(<TodoComponent />, document.getElementById('todo-wrapper'));
