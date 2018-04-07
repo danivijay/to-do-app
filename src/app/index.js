@@ -1,8 +1,12 @@
-import { link } from 'fs';
-
 let React = require('react')
 let ReactDOM = require('react-dom')
 let createReactClass = require('create-react-class');
+
+// css
+require('./css/index.css');
+
+// components
+let TodoItem = require('./todoItem')
 
 let TodoComponent = createReactClass({
   getInitialState: function() {
@@ -18,11 +22,9 @@ let TodoComponent = createReactClass({
       );
     }.bind(this));
     return(
-      <div>
-        <p>Click me</p>
-        <ul>
-          {todos}
-        </ul>
+      <div id="todo-list">
+          <p>The busiest people have the most leisure...</p>
+          <ul>{todos}</ul>
       </div>
     );
   },
@@ -33,22 +35,6 @@ let TodoComponent = createReactClass({
     this.setState({
       todos: updatedTodos
     });
-  }
-});
-
-let TodoItem = createReactClass({
-  render: function() {
-    return(
-      <li>
-        <div className="todo-item">
-          <span className="item-name">{this.props.item}</span>
-          <span className="item-delete" onClick={this.handleDelete}> x </span>
-        </div>
-      </li>
-    );
-  },
-  handleDelete() {
-    this.props.onDelete(this.props.item);
   }
 });
 
