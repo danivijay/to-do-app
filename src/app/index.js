@@ -1,13 +1,26 @@
 let React = require('react')
 let ReactDOM = require('react-dom')
 let createReactClass = require('create-react-class');
+import {Router, Route, browserHistory, Link} from 'react-router'
 
 // css
 require('./css/index.css');
 
 // components
-let TodoItem = require('./todoItem')
-let AddItem = require('./addItem')
+let TodoItem = require('./todoItem');
+let AddItem = require('./addItem');
+let About = require('./about');
+
+let App = createReactClass({
+  render() {
+    return (
+      <Router history={browserHistory}>
+        <Route path={'/'} component={TodoComponent} />
+        <Route path={'/about'} component={About} />
+      </Router>
+    );
+  }
+});
 
 let TodoComponent = createReactClass({
   getInitialState: function() {
@@ -24,9 +37,10 @@ let TodoComponent = createReactClass({
     }.bind(this));
     return(
       <div id="todo-list">
-          <p>The busiest people have the most leisure...</p>
-          <ul>{todos}</ul>
-          <AddItem onAdd={this.onAdd} />
+        <Link to={'/about'}>About</Link>
+        <p>The busiest people have the most leisure...</p>
+        <ul>{todos}</ul>
+        <AddItem onAdd={this.onAdd} />
       </div>
     );
   },
@@ -47,4 +61,4 @@ let TodoComponent = createReactClass({
   }
 });
 
-ReactDOM.render(<TodoComponent />, document.getElementById('todo-wrapper'));
+ReactDOM.render(<App />, document.getElementById('todo-wrapper'));
