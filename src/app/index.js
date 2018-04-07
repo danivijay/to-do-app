@@ -14,16 +14,25 @@ let TodoComponent = createReactClass({
     let todos = this.state.todos;
     todos = todos.map(function(item, index){
       return (
-        <TodoItem item={item} key={index} />
+        <TodoItem item={item} key={index} onDelete={this.onDelete} />
       );
-    });
+    }.bind(this));
     return(
       <div>
+        <p>Click me</p>
         <ul>
           {todos}
         </ul>
       </div>
     );
+  },
+  onDelete(item) {
+    let updatedTodos = this.state.todos.filter((val, index)=> {
+      return item !== val;
+    });
+    this.setState({
+      todos: updatedTodos
+    });
   }
 });
 
@@ -33,9 +42,13 @@ let TodoItem = createReactClass({
       <li>
         <div className="todo-item">
           <span className="item-name">{this.props.item}</span>
+          <span className="item-delete" onClick={this.handleDelete}> x </span>
         </div>
       </li>
     );
+  },
+  handleDelete() {
+    this.props.onDelete(this.props.item);
   }
 });
 
