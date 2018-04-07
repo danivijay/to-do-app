@@ -5,23 +5,21 @@ let createReactClass = require('create-react-class');
 let TodoComponent = createReactClass({
   getInitialState: function() {
     return {
-      todos: ['washup', 'take a nap'],
-      age: 30
+      todos: ['washup', 'take a nap']
     }
   },
   render: function() {
-    let ager = setTimeout(function(){
-      this.setState({
-        age: 35
-      });
-    }.bind(this), 5000);
+    let todos = this.state.todos;
+    todos = todos.map(function(item, index){
+      return (
+        <li key={index}>{item}</li>
+      );
+    });
     return(
       <div>
-        <p> 
-          {this.state.todos[0]}<br/>
-          {this.state.todos[0]}<br/>
-          {this.state.todos[0]}<br/>
-        </p>
+        <ul> 
+          {todos}
+        </ul>
         <h3>{this.state.age}</h3>
       </div>
     );
