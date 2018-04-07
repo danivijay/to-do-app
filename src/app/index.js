@@ -1,3 +1,5 @@
+import { link } from 'fs';
+
 let React = require('react')
 let ReactDOM = require('react-dom')
 let createReactClass = require('create-react-class');
@@ -12,24 +14,29 @@ let TodoComponent = createReactClass({
     let todos = this.state.todos;
     todos = todos.map(function(item, index){
       return (
-        <li key={index}>{item}</li>
+        <TodoItem item={item} key={index} />
       );
     });
     return(
       <div>
-        <ul> 
+        <ul>
           {todos}
         </ul>
-        <h3>{this.state.age}</h3>
       </div>
     );
   }
 });
 
-let myCheese = {
-  name: 'Camemberi',
-  smellFactor: 'Extreme pong',
-  price: '3.50'
-}
+let TodoItem = createReactClass({
+  render: function() {
+    return(
+      <li>
+        <div className="todo-item">
+          <span className="item-name">{this.props.item}</span>
+        </div>
+      </li>
+    );
+  }
+});
 
 ReactDOM.render(<TodoComponent />, document.getElementById('todo-wrapper'));

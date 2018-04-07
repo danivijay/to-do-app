@@ -8,6 +8,9 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/app/'
     },
+    node: {
+        fs: 'empty'
+    },
     module: {
         rules: [
             {
