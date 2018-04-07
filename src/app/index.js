@@ -25,7 +25,7 @@ let App = createReactClass({
 let TodoComponent = createReactClass({
   getInitialState: function() {
     return {
-      todos: ['washup', 'take a nap']
+      todos: ['wash up', 'take a nap']
     }
   },
   render: function() {
