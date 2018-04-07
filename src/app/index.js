@@ -7,6 +7,7 @@ require('./css/index.css');
 
 // components
 let TodoItem = require('./todoItem')
+let AddItem = require('./addItem')
 
 let TodoComponent = createReactClass({
   getInitialState: function() {
@@ -25,6 +26,7 @@ let TodoComponent = createReactClass({
       <div id="todo-list">
           <p>The busiest people have the most leisure...</p>
           <ul>{todos}</ul>
+          <AddItem onAdd={this.onAdd} />
       </div>
     );
   },
@@ -35,6 +37,13 @@ let TodoComponent = createReactClass({
     this.setState({
       todos: updatedTodos
     });
+  },
+  onAdd(item) {
+    let updatedTodos = this.state.todos;
+    updatedTodos.push(item);
+    this.setState({
+      todos: updatedTodos
+    })
   }
 });
 
